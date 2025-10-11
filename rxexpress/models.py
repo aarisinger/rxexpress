@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import date, timedelta
 
 # Models aligned to the Excel workbook
 class Patient(models.Model):
@@ -53,3 +53,32 @@ class Prescription(models.Model):
 
     def __str__(self):
         return f"{self.patient.patient_id} - {self.medication.rx_id}"
+    
+    @property
+    def days_since_last_refill(self):
+        if not self.last_refill_date:
+            return None
+        return (date.today() - self.last_refill_date).days
+    
+    @property
+    def refill_ready(self):
+        if self.days_since_last_refill is None or self.days_dispensed is None:
+            return False
+        return self.days_since_last_refill >=(self.days_dispensed - 5)
+    
+    @property
+    def appointment_ok(self):
+        last_appt = self.last_appointment_date or(
+            self.patient.last_appointment if self.patient else None
+        )
+        if not last_appt or not self.medication or not self.medication.appointment_days_needed:
+            return False
+        days_since_appointment = (date.today() - last_appt).days
+        return days_since_appointment <= self.medication.appointment_days_needed
+    
+    @property
+    def eligible_for_refill(self):
+        return self.refill_ready and self.appointment_ok
+    
+    def __str__(self):
+        return f"Prescription for {self.patient} - {self.medication}"
