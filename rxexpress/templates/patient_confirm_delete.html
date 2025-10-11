@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Delete Patient</h2>
+  <p>Are you sure you want to delete {{ patient.first_name }} {{ patient.last_name }} ({{ patient.patient_id }})?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Delete</button>
+    <a class="btn btn-secondary" href="/patients/">Cancel</a>
+  </form>
+</div>
+{% endblock %}

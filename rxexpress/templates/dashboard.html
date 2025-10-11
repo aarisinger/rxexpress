@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Dashboard</h2>
+  <div class="row">
+    <div class="col-md-4"><div class="card p-3">Patients: {{ patients_count }}</div></div>
+    <div class="col-md-4"><div class="card p-3">Medications: {{ medications_count }}</div></div>
+    <div class="col-md-4"><div class="card p-3">Prescriptions: {{ prescriptions_count }}</div></div>
+  </div>
+
+  <div class="mt-4">
+    <form method="get" class="form-inline">
+      <input name="q" value="{{ query }}" class="form-control mr-2 w-50" placeholder="Enter Patient ID (Last Name + DOB MMDDYYYY)">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+
+  {% if prescriptions %}
+    <h3 class="mt-4">Prescriptions for search</h3>
+    <table class="table table-sm">
+      <thead>
+        <tr><th>Patient</th><th>Medication</th><th>Refill Date Valid?</th><th>Appointment Needed?</th></tr>
+      </thead>
+      <tbody>
+        {% for p in prescriptions %}
+          <tr>
+            <td>{{ p.patient.first_name }} {{ p.patient.last_name }} ({{ p.patient.patient_id }})</td>
+            <td>{{ p.medication.name }} {{ p.medication.dosage }}</td>
+            <td>{{ p.refill_date_display }}</td>
+            <td>{{ p.appointment_date_display }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+</div>
+{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Dashboard</title>
+</head>
+<body>
+    form method = 'Patient'
+    form method = 'Prescription'
+    input type = submit
+</body>
+</html>
