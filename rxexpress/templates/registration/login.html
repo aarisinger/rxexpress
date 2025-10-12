@@ -1,9 +1,15 @@
 {% extends "index.html" %}
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form }}
-  <button type="submit">Log In</button>
-</form>
+<div class="d-flex justify-content-center mt-5">
+    <div class="card shadow-sm p-4" style="width: 400px; background-color: var(--secondary); border: none; border-radius: 1rem;">
+        <h2 class="text-center mb-4" style="color: var(--primary);">Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
