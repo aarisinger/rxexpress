@@ -33,6 +33,7 @@ urlpatterns = [
     path('patients/<int:pk>/edit/', views.patient_detail_view, name='patient_edit'),
     path('patients/<int:pk>/delete/', views.patient_delete_view, name='patient_delete'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('register/', views.register, name='register'),
    
 
 ]

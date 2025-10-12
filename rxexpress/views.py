@@ -3,6 +3,8 @@ from .models import Patient, Prescription, Medication
 from .forms import PatientForm, PrescriptionForm, MedicationForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -94,3 +96,16 @@ def patient_delete_view(request, pk):
         patient.delete()
         return redirect('patient_list')
     return render(request, 'patient_confirm_delete.html', {'patient': patient})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New user created successfully!')
+            return redirect('login')  
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': form})
+
