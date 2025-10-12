@@ -150,10 +150,6 @@
         <h1 class="display-4" style="color: var(--primary);">Welcome to RxExpress</h1>
         <p class="lead text-muted">A simple refill tracking system for smoother patient care.</p>
 
-        {% if user.is_authenticated %}
-        <a class="btn btn-primary btn-lg mt-3" href="{% url 'dashboard' %}" role="button">Click Here to Begin</a>
-        {% endif %}
-
         {% if not user.is_authenticated %}
             <a class="btn btn-primary btn-lg" href="/accounts/login/" role="button">Login</a>
             <a class="btn btn-success btn-lg" href="{% url 'register' %}" role="button">Create Account</a>
