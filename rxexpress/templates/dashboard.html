@@ -16,38 +16,42 @@
   </div>
 
   {% if prescriptions %}
-    <h3 class="mt-4">Prescriptions for search</h3>
-    <table class="table table-sm">
-      <thead>
-        <tr><th>Patient</th><th>Medication</th><th>Refill Date Valid?</th><th>Appointment Needed?</th></tr>
+    <h3 class="mt-4">Prescription Eligibility</h3>
+    <table class="table table-bordered table-striped table-sm mt-2">
+      <thead class="thead-dark">
+        <tr>
+          <th>Patient</th>
+          <th>Medication</th>
+          <th>Days Since Last Refill</th>
+          <th>Refill Date Ok?</th>
+          <th>Last Appointment Date</th>
+          <th>Appointment Needed?</th>
+          <th>Eligible for Refill?</th>
+        </tr>
       </thead>
       <tbody>
         {% for p in prescriptions %}
           <tr>
             <td>{{ p.patient.first_name }} {{ p.patient.last_name }} ({{ p.patient.patient_id }})</td>
             <td>{{ p.medication.name }} {{ p.medication.dosage }}</td>
-            <td>{{ p.refill_date_display }}</td>
-            <td>{{ p.appointment_date_display }}</td>
+            <td>{{ p.days_since_last_refill|default:"N/A" }}</td>
+            <td>{% if p.refill_ready %}✅{% else %}❌{% endif %}</td>
+            <td>{{ p.last_appointment_date|date:"M d, Y"|default:"N/A" }}</td>
+            <td>{% if p.appointment_ok %}✅{% else %}❌{% endif %}</td>
+            <td>
+              {% if p.eligible_for_refill %}
+                <span class="text-success font-weight-bold">Eligible</span>
+              {% else %}
+                <span class="text-danger font-weight-bold">Not Eligible</span>
+              {% endif %}
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+  {% else %}
+    <p class="mt-4">No prescriptions found</p>
   {% endif %}
 
 </div>
 {% endblock %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
-    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <title>Dashboard</title>
-</head>
-<body>
-    form method = 'Patient'
-    form method = 'Prescription'
-    input type = submit
-</body>
-</html>
