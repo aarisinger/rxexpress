@@ -30,4 +30,4 @@ class MedicationForm(forms.ModelForm):
 class PrescriptionForm(forms.ModelForm):
     class Meta:
         model = Prescription
-        fields = ['patient', 'medication', 'refill_date_display', 'days_dispensed', 'last_refill_date']
+        fields = ['patient', 'medication', 'days_dispensed', 'last_refill_date']

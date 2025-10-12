@@ -36,7 +36,7 @@
             <td>{{ p.medication.name }} {{ p.medication.dosage }}</td>
             <td>{{ p.days_since_last_refill|default:"N/A" }}</td>
             <td>{% if p.refill_ready %}✅{% else %}❌{% endif %}</td>
-            <td>{{ p.last_appointment_date|date:"M d, Y"|default:"N/A" }}</td>
+            <td>{{ p.appointment_display|date:"M d, Y"|default:"N/A" }}</td>
             <td>{% if p.appointment_ok %}✅{% else %}❌{% endif %}</td>
             <td>
               {% if p.eligible_for_refill %}

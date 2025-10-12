@@ -50,9 +50,18 @@ class Prescription(models.Model):
 
     class Meta:
         unique_together = ('patient', 'medication')
-
+    
     def __str__(self):
         return f"{self.patient.patient_id} - {self.medication.rx_id}"
+
+    def save(self, *args, **kwargs):
+        if self.last_appointment_date and self.patient:
+            
+            if not self.patient.last_appointment or self.last_appointment_date > self.patient.last_appointment:
+                self.patient.last_appointment = self.last_appointment_date
+                self.patient.save()
+        super().save(*args, **kwargs)
+
     
     @property
     def days_since_last_refill(self):
@@ -79,6 +88,13 @@ class Prescription(models.Model):
     @property
     def eligible_for_refill(self):
         return self.refill_ready and self.appointment_ok
+
     
+    @property
+    def appointment_display(self):
+        return self.last_appointment_date or(
+            self.patient.last_appointment if self.patient else None
+        )
+            
     def __str__(self):
         return f"Prescription for {self.patient} - {self.medication}"

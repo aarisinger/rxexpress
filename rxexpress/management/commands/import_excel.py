@@ -55,12 +55,17 @@ class Command(BaseCommand):
                 if patient_id == 'nan' or not patient_id:
                     continue
 
+                last_appointment = row.get('Last appointment date')
+                last_fill_date = row.get('Last refill date')
+
                 patient_obj, _ = Patient.objects.update_or_create(
                     patient_id=patient_id,
                     defaults={
                         'first_name': first_name or '',
                         'last_name': last_name or '',
                         'date_of_birth': pd.to_datetime(dob, errors='coerce').date() if pd.notna(dob) else None,
+                        'last_appointment': pd.to_datetime(last_appointment, errors='coerce').date() if pd.notna(last_appointment) else None,
+                        'last_fill_date': pd.to_datetime(last_fill_date, errors='coerce').date() if pd.notna(last_fill_date) else None,
                     }
                 )
 
@@ -80,6 +85,11 @@ class Command(BaseCommand):
                 # create or update prescription
                 last_refill_date = row.get('Last refill date')
                 last_appointment_date = row.get('Last appointment date')
+
+                if last_appointment_date and not patient_obj.last_appointment:
+                    patient_obj.last_appointment = pd.to_datetime(last_appointment_date, errors='coerce').date()
+                    patient_obj.save()
+                
 
                 Prescription.objects.update_or_create(
                     patient=patient_obj,

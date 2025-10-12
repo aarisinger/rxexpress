@@ -5,7 +5,7 @@ from .models import Patient, Medication, Prescription
 
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
-	list_display = ('patient_id', 'first_name', 'last_name', 'date_of_birth')
+	list_display = ('patient_id', 'first_name', 'last_name', 'date_of_birth', 'last_appointment', 'last_fill_date')
 
 
 @admin.register(Medication)
