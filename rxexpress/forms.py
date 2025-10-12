@@ -5,12 +5,13 @@ from .models import Patient, Prescription, Medication
 class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = ['patient_id', 'first_name', 'last_name', 'date_of_birth']
+        fields = ['patient_id', 'first_name', 'last_name', 'date_of_birth', 'last_appointment']
         widgets = {
             'patient_id': forms.TextInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.TextInput(attrs={'class': 'form-control'})
+            'date_of_birth': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_appointment': forms.TextInput(attrs={'class': 'form-control'})
         }
 
 
