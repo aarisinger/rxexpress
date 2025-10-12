@@ -50,19 +50,12 @@ def dashboard(request):
     medications_count = Medication.objects.count()
     prescriptions_count = Prescription.objects.count()
 
-    q = request.GET.get('q', '').strip()
-    prescriptions = None
-    patient_results = None
-    if q:
-        # lookup by patient_id or name
-        patient_results = Patient.objects.filter(patient_id__icontains=q) | Patient.objects.filter(first_name__icontains=q) | Patient.objects.filter(last_name__icontains=q)
-        prescriptions = Prescription.objects.filter(patient__in=patient_results).select_related('medication', 'patient')
-
+    prescriptions = Prescription.objects.select_related('patient', 'medication')
+    
     return render(request, 'dashboard.html', {
         'patients_count': patients_count,
         'medications_count': medications_count,
         'prescriptions_count': prescriptions_count,
-        'query': q,
         'prescriptions': prescriptions,
     })
 
