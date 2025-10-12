@@ -4,45 +4,75 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
         <title>RxExpress</title>
         <style>
             body {
-                font-family: "Roboto", sans-serif;
+                font-family: 'Lato', sans-serif;
+                background-color: #f6f9fa;
+                color: #333;
+            }
+
+            h1, h2, h3, .navbar-brand {
+                font-family: 'Merriweather', serif;
+                color: #004d61;
+            }
+
+            :root {
+                --primary: #2b8a9c;
+                --secondary: #eaf5f5;
+                --accent: #88c9bf;
+                --text-dark: #333;
+                --text-muted: #6c757d;
+            }
+
+            .btn-primary {
+                background-color: var(--primary);
+                border-color: var(--primary);
+            }
+
+            .btn-primary:hover{
+                background-color: #237381
+                border-color: #237381;
             }
         </style>
     </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">RxExpress</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: var(--secondary); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+    <a class="navbar-brand font-weight-bold" href="/" style="color: var(--primary);">
+        RxExpress
+    </a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="/dashboard/">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="/add-patient/">Add Patient</a></li>
-            <li class="nav-item"><a class="nav-link" href="/add-medication/">Add Medication</a></li>
-            <li class="nav-item"><a class="nav-link" href="/add-prescription/">Add Prescription</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/dashboard/">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/add-patient/">Add Patient</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/add-medication/">Add Medication</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/add-prescription/">Add Prescription</a></li>
         </ul>
         <ul class="navbar-nav ml-auto align-items-center">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <span class="nav-item">
-                        <span class="nav-link">{{ user.username}}</span>
+                    <span class="nav-link text-dark">{{ user.username}}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-info btn-sm mr-2" href="{% url 'password_change' %}">
+                        Change Password
+                        </a>
                 </li>
                 <li class="nav-item">
                     <form method='post' action="{% url 'logout' %}" style="display: inline;">
                         {% csrf_token %}
-                        <button type="submit"
-                                class="nav-link btn btn-link"
-                                style="padding: 0; border: none; background: none; cursor: pointer;">
-                            Logout
-                        </button>
+                        <button type="submit" class="btn btn-outline-danger btn-sm ml-2">Logout</button>
                     </form>
                 </li>
-                
+             
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="btn btn-outline-primary btn-sm ml-2" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-success btn-sm ml-2" href="{%url 'register' %}">Create Account</a>
                 </li>
             {% endif %}
         </ul>
@@ -51,15 +81,16 @@
 
 </div>
 <div class="container mt-4">
-    <div class="jumbotron">
-        <h1 class="display-4">Welcome to RxExpress</h1>
-        <p class="lead">A simple refill tracking system.</p>
+    <div class="jumbotron" style="background-color: var(--secondary); border-radius: 1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.05)">
+        <h1 class="display-4" style="color: var(--primary);">Welcome to RxExpress</h1>
+        <p class="lead text-muted">A simple refill tracking system for smoother patient care.</p>
         <hr class="my-4">
         <p>{{ sentence }}</p>
         {% if not user.is_authenticated %}
             <a class="btn btn-primary btn-lg" href="/accounts/login/" role="button">Login</a>
             <a class="btn btn-success btn-lg" href="{% url 'register' %}" role="button">Create Account</a>
         {% else %}
+                 
             <!-- <a class="btn btn-success btn-lg" href="/dashboard/" role="button">Go to Dashboard</a> -->
         {% endif %}
     </div>
