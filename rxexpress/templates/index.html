@@ -33,8 +33,60 @@
             }
 
             .btn-primary:hover{
-                background-color: #237381
+                background-color: #237381;
                 border-color: #237381;
+            }
+
+            table {
+                background-color: #ffffff;
+                color: var(--text-dark);
+                border-collapse: separate;
+                border-spacing: 0;
+                border-radius: 0.5rem;
+                overflow: hidden;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.05)
+            }
+
+            thead {
+                background-color: var(--secondary);
+                color: ver(--primary);
+                font-family: 'Merriweather', serif;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+                font-size: 0.9rem;
+
+            }
+
+            thead th {
+                border: none;
+                padding: 0.75rem;
+            }
+
+            tbody tr:nth-child(even) {
+                background-color: #f9fdfd;
+            }
+
+            tbody td {
+                padding: 0.75rem;
+                vertical-align: middle;
+            }
+
+            .table-bordered {
+                border: 1px solid var(--accent);
+            }
+
+            .text-success {
+                color: #3c8d81 !important;
+                font-weight: 600;
+            }
+
+            .text-danger {
+                color: #c04c4c !important;
+                font-weight: 600;
+            }
+
+            .table thead th{
+                border-bottom: 2px solid var(--accent);
             }
         </style>
     </head>
