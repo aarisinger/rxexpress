@@ -18,7 +18,8 @@ def patient_form_view(request):
         form = PatientForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            messages.success(request, 'New patient created successfully!')
+            return redirect('dashboard')
     else:
         form = PatientForm()
     return render(request, 'add_patient.html', {'form': form})
@@ -29,6 +30,7 @@ def prescription_form_view(request):
         form = PrescriptionForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'New prescription added successfully to patient!')
             return redirect('index')
     else:
         form = PrescriptionForm()
@@ -40,6 +42,7 @@ def medication_form_view(request):
         form = MedicationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'New medication created successfully!')
             return redirect('dashboard')
     else:
         form = MedicationForm()
