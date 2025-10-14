@@ -1,130 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
 
-        <title>RxExpress</title>
-        <style>
-            body {
-                font-family: 'Lato', sans-serif;
-                background-color: #f6f9fa;
-                color: #333;
-            }
+    <title>RxExpress</title>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f6f9fa;
+            color: #333;
+        }
 
-            h1, h2, h3, .navbar-brand {
-                font-family: 'Merriweather', serif;
-                color: #004d61;
-            }
+        h1,
+        h2,
+        h3,
+        .navbar-brand {
+            font-family: 'Merriweather', serif;
+            color: #004d61;
+        }
 
-            :root {
-                --primary: #2b8a9c;
-                --secondary: #eaf5f5;
-                --accent: #88c9bf;
-                --text-dark: #333;
-                --text-muted: #6c757d;
-            }
+        :root {
+            --primary: #2b8a9c;
+            --secondary: #eaf5f5;
+            --accent: #88c9bf;
+            --text-dark: #333;
+            --text-muted: #6c757d;
+        }
 
-            .btn-primary {
-                background-color: var(--primary);
-                border-color: var(--primary);
-            }
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
 
-            .btn-primary:hover{
-                background-color: #237381;
-                border-color: #237381;
-            }
+        .btn-primary:hover {
+            background-color: #237381;
+            border-color: #237381;
+        }
 
-            table {
-                background-color: #ffffff;
-                color: var(--text-dark);
-                border-collapse: separate;
-                border-spacing: 0;
-                border-radius: 0.5rem;
-                overflow: hidden;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.05)
-            }
+        table {
+            background-color: #ffffff;
+            color: var(--text-dark);
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05)
+        }
 
-            thead {
-                background-color: var(--secondary);
-                color: ver(--primary);
-                font-family: 'Merriweather', serif;
-                text-transform: uppercase;
-                letter-spacing: 0.03em;
-                font-size: 0.9rem;
+        thead {
+            background-color: var(--secondary);
+            color: ver(--primary);
+            font-family: 'Merriweather', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-size: 0.9rem;
 
-            }
+        }
 
-            thead th {
-                border: none;
-                padding: 0.75rem;
-            }
+        thead th {
+            border: none;
+            padding: 0.75rem;
+        }
 
-            tbody tr:nth-child(even) {
-                background-color: #f9fdfd;
-            }
+        tbody tr:nth-child(even) {
+            background-color: #f9fdfd;
+        }
 
-            tbody td {
-                padding: 0.75rem;
-                vertical-align: middle;
-            }
+        tbody td {
+            padding: 0.75rem;
+            vertical-align: middle;
+        }
 
-            .table-bordered {
-                border: 1px solid var(--accent);
-            }
+        .table-bordered {
+            border: 1px solid var(--accent);
+        }
 
-            .text-success {
-                color: #3c8d81 !important;
-                font-weight: 600;
-            }
+        .text-success {
+            color: #3c8d81 !important;
+            font-weight: 600;
+        }
 
-            .text-danger {
-                color: #c04c4c !important;
-                font-weight: 600;
-            }
+        .text-danger {
+            color: #c04c4c !important;
+            font-weight: 600;
+        }
 
-            .table thead th{
-                border-bottom: 2px solid var(--accent);
-            }
+        .table thead th {
+            border-bottom: 2px solid var(--accent);
+        }
 
-            .full-width-jumbotron h1 {
-                font-size: 4rem;
-                font-weight: 700;
-            }
+        .full-width-jumbotron h1 {
+            font-size: 4rem;
+            font-weight: 700;
+        }
 
-            .full-width-jumbotron .lead {
-                font-size: 1.5rem;
-                font-weight: 400;
-            }
+        .full-width-jumbotron .lead {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
 
-            .full-width-jumbotron p {
-                font-size: 2.1rem;
-            }
-        </style>
-    </head>
+        .full-width-jumbotron p {
+            font-size: 2.1rem;
+        }
+    </style>
+</head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: var(--secondary); box-shadow: none !important;">
-    <a class="navbar-brand font-weight-bold" href="/" style="color: var(--primary);">
-        RxExpress
-    </a>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link text-dark" href="/dashboard/">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="/add-patient/">Add Patient</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="/add-medication/">Add Medication</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="/add-prescription/">Add Prescription</a></li>
-        </ul>
-        <ul class="navbar-nav ml-auto align-items-center">
-            {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-light"
+        style="background-color: var(--secondary); box-shadow: none !important;">
+        <a class="navbar-brand font-weight-bold" href="/" style="color: var(--primary);">
+            RxExpress
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link text-dark" href="/dashboard/">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="/add-patient/">Add Patient</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="/add-medication/">Add Medication</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="/add-prescription/">Add Prescription</a></li>
+            </ul>
+            <ul class="navbar-nav ml-auto align-items-center">
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <span class="nav-link text-dark">{{ user.username}}</span>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-info btn-sm mr-2" href="{% url 'password_change' %}">
                         Change Password
-                        </a>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <form method='post' action="{% url 'logout' %}" style="display: inline;">
@@ -132,36 +140,44 @@
                         <button type="submit" class="btn btn-outline-danger btn-sm ml-2">Logout</button>
                     </form>
                 </li>
-             
-            {% else %}
+
+                {% else %}
                 <li class="nav-item">
                     <a class="btn btn-outline-primary btn-sm ml-2" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-success btn-sm ml-2" href="{%url 'register' %}">Create Account</a>
                 </li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
 
-</div>
-<div class="jumbotron full-width-jumbotron text-center" style="background-color: var(--secondary); border-radius: 1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.05)">
+    </div>
+    <div class="jumbotron full-width-jumbotron text-center"
+        style="background-color: var(--secondary); border-radius: 1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.05)">
         <h1 class="display-4" style="color: var(--primary);">Welcome to RxExpress</h1>
         <p class="lead text-muted">A simple refill tracking system for smoother patient care.</p>
 
         {% if not user.is_authenticated %}
-            <a class="btn btn-primary btn-lg" href="/accounts/login/" role="button">Login</a>
-            <a class="btn btn-success btn-lg" href="{% url 'register' %}" role="button">Create Account</a>
+        <a class="btn btn-primary btn-lg" href="/accounts/login/" role="button">Login</a>
+        <a class="btn btn-success btn-lg" href="{% url 'register' %}" role="button">Create Account</a>
         {% else %}
-                 
-            <!-- <a class="btn btn-success btn-lg" href="/dashboard/" role="button">Go to Dashboard</a> -->
+
+        <!-- <a class="btn btn-success btn-lg" href="/dashboard/" role="button">Go to Dashboard</a> -->
         {% endif %}
     </div>
-
+    {% if messages %}
+    {% for j in messages %}
+    <div class="alert alert-light" role="alert">
+        {{ j }}
+    </div>
+    {% endfor %}
+    {% endif %}
     {% block content %}{% endblock %}
 
-    
-</div>
+
+    </div>
 </body>
+
 </html>
